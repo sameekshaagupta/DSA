@@ -1,3 +1,5 @@
+#include<bits/stdc++.h>
+using namespace std;
 void nNumberTriangle(int n) {
     int s=n;
     for(int i=n; i>0; i--){
