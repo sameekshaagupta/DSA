@@ -17,6 +17,7 @@ void nStarTriangle(int n) {
             if(i==2*n-1){
                 break;
             }
+            
             i=0;
             flag=1;
         }
