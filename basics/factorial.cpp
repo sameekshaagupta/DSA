@@ -13,6 +13,7 @@ class Solution {
         for(long long j=i; j>0; j--){
             fact=fact*j;
         }
+        
         if(fact<=n){
             hehe.emplace_back(fact);
             factoriall(i+1,n,hehe);
