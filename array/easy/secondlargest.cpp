@@ -1,22 +1,20 @@
 #include<bits/stdc++.h>
 using namespace std;
 class Solution {
-  public:
-    // Function returns the second
-    // largest elements
-    int getSecondLargest(vector<int> &arr) {
-        int largest = arr[0];
-        for(int i=0; i<arr.size(); i++){
-            if(arr[i]>largest){
-                largest=arr[i];
+public:
+    int secondLargestElement(vector<int>& nums) {
+        int x = INT_MIN;
+        for(int i=0; i<nums.size(); i++){
+            if(nums[i]>x){
+                x=nums[i];
             }
         }
-        int secondlargest=-1;
-        for(int i=0;i<arr.size(); i++){
-            if(arr[i]>secondlargest && arr[i]!=largest){
-                secondlargest = arr[i];
+        int y=-1;
+        for(int i=0; i<nums.size(); i++){
+            if(nums[i]>y && nums[i]<x){
+                y=nums[i];
             }
         }
-        return secondlargest;
+        return y;
     }
 };
