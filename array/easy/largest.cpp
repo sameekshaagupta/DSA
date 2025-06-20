@@ -1,14 +1,12 @@
-#include<bits/stdc++.h>
-using namespace std;
 class Solution {
-  public:
-    int largest(vector<int> &arr) {
-        int largest = arr[0];
-        for(int i=1; i<arr.size(); i++){
-            if(largest<arr[i]){
-                largest = arr[i];
+public:
+    int largestElement(vector<int>& nums) {
+        int i=nums[0];
+        for(int a=1; a<nums.size(); a++){
+            if(nums[a]>i){
+                i=nums[a];
             }
         }
-        return largest;
+        return i;
     }
 };
