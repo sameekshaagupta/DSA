@@ -1,20 +1,24 @@
 #include<bits/stdc++.h>
 using namespace std;
 #include<map>
+//hashmap
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> num_index;
+        map<int, int> mpp;
         for(int i=0; i<nums.size(); i++){
-            int complement=target-nums[i];
-            if(num_index.find(complement)!=0){
-                return {num_index[complement],i};
+            int num=nums[i];
+            int rem=target-num;
+            if(mpp.find(rem)!= mpp.end()){
+                return {i, mpp[rem]};
             }
-            num_index[nums[i]]=i;
+            mpp[nums[i]]=i;
         }
-        return {};
+        return {-1,-1};
     }
 };
+
+//brute force
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -26,5 +30,29 @@ public:
             }
         }
         return {};
+    }
+};
+
+//sorting  but not recommended
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int start=0;
+        int end=nums.size()-1;
+        int sum=0;
+        nums=nums.sort();
+        while(start<end){
+            sum=nums[start]+nums[end];
+            if(sum>target){
+                end--;
+            }
+            else if(sum<target){
+                start++;
+            }
+            else if(sum==target){
+                return {start,end};
+            }
+        }
+        return {-1,-1};
     }
 };
