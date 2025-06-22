@@ -3,12 +3,10 @@ using namespace std;
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        int result = 0;
-        
+        int xorr=0;
         for(int i=0; i<nums.size(); i++){
-            result ^= nums[i];
+            xorr=xorr^nums[i];
         }
-        
-        return result; 
+        return xorr;
     }
 };
