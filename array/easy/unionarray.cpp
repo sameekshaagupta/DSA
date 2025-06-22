@@ -1,48 +1,42 @@
 #include<bits/stdc++.h>
 using namespace std;
-class Solution{
-    public:
-    //arr1,arr2 : the arrays
-    // n, m: size of arrays
-    //Function to return a list containing the union of the two arrays. 
-    vector<int> findUnion(int arr1[], int arr2[], int n, int m)
-    {
+class Solution {
+public:
+    vector<int> unionArray(vector<int>& nums1, vector<int>& nums2) {
         int i=0;
         int j=0;
-        vector<int> unionn;
-        while(i<n && j<m){
-            if(arr1[i]<arr2[j]){
-                if(unionn.empty()|| arr1[i]!=unionn.back()){
-                    unionn.push_back(arr1[i]);
+        vector<int> nums;
+        while(i<nums1.size() && j<nums2.size()){
+            if(nums1[i]<nums2[j]){
+                if(nums.size()==0||nums.back()!=nums1[i]){
+                    nums.push_back(nums1[i]);
                 }
                 i++;
             }
-            else if(arr1[i]>arr2[j]){
-                if(unionn.empty()|| arr2[j]!=unionn.back()){
-                    unionn.push_back(arr2[j]);
+            else if(nums1[i]>nums2[j]){
+                if(nums.size()==0||nums.back()!=nums2[j]){
+                    nums.push_back(nums2[j]);
                 }
                 j++;
-            }
-            else {
-                if (unionn.empty() || unionn.back() != arr1[i]) {
-                    unionn.push_back(arr1[i]);
-                }
+            }else{
+                if (nums.empty() || nums.back() != nums1[i])
+                    nums.push_back(nums1[i]);
                 i++;
                 j++;
             }
         }
-        while(i<n){
-            if (unionn.empty() || unionn.back() != arr1[i]) {
-                unionn.push_back(arr1[i]);
+        while(i<nums1.size()){
+            if(nums.size()==0||nums.back()!=nums1[i]){
+                nums.push_back(nums1[i]);
             }
             i++;
         }
-        while(j<m){
-            if (unionn.empty() || unionn.back() != arr2[j]) {
-                unionn.push_back(arr2[j]);
+        while(j<nums2.size()){
+            if(nums.size()==0||nums.back()!=nums2[j]){
+                nums.push_back(nums2[j]);
             }
             j++;
         }
-        return unionn;
+        return nums;
     }
 };
