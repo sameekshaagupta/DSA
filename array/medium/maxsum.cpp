@@ -1,32 +1,30 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
+        int maxx=INT_MIN;
         int sum=0;
-        int maxx=-100000;
-        bool nega=true;
+        bool neg=true;
         for(int i=0; i<nums.size(); i++){
-            if(nums[i]>=0){
-                nega=false;
-            }
-            else{
-                maxx=max(nums[i], maxx);
-            }
+            if(nums[i]>0){
+                neg=false;
+            }else(nums[i]>maxx){
+                    maxx=nums[i];
+                }
         }
-        if(nega){
-            return maxx;
-        }
-        else{
-            maxx=0;
+        if(!neg){
             for(int i=0; i<nums.size(); i++){
                 sum=sum+nums[i];
                 if(sum<0){
                     sum=0;
                 }
-                if(sum>maxx){
+                else if(sum>maxx){
                     maxx=sum;
                 }
             }
-            return maxx;
         }
+        if(nums.size()==0){
+        return 0;
+        }
+        return maxx;
     }
 };
