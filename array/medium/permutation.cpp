@@ -2,23 +2,35 @@ class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
         int n = nums.size();
-        int i = n - 2;
+        int index = -1;
 
-        // Step 1: Find the first decreasing element
-        while (i >= 0 && nums[i] >= nums[i + 1]) {
-            i--;
-        }
-
-        if (i >= 0) {
-            // Step 2: Find the smallest element larger than nums[i] to the right
-            int j = n - 1;
-            while (j >= 0 && nums[j] <= nums[i]) {
-                j--;
+        // Step 1: Find the first decreasing element from the right
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                index = i;
+                break;
             }
-            swap(nums[i], nums[j]);
         }
 
-        // Step 3: Reverse the suffix
-        reverse(nums.begin() + i + 1, nums.end());
+        // Step 2: If no such element, reverse the array (last permutation)
+        if (index == -1) {
+            reverse(nums.begin(), nums.end());
+            return;
+        }
+
+        // Step 3: Find the smallest element greater than nums[index] to the right
+        int nextGreaterIndex = -1;
+        for (int i = n - 1; i > index; i--) {
+            if (nums[i] > nums[index]) {
+                nextGreaterIndex = i;
+                break;
+            }
+        }
+
+        // Step 4: Swap with the next greater element
+        swap(nums[index], nums[nextGreaterIndex]);
+
+        // Step 5: Reverse the suffix starting from index + 1
+        reverse(nums.begin() + index + 1, nums.end());
     }
 };
